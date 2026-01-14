@@ -2,7 +2,7 @@ import { Cookie, Palette, Heart } from 'lucide-react';
 
 export function ProcessSection() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section id="process" className="section-anchor bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Step 1 */}

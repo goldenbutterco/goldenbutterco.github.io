@@ -2,7 +2,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function StorySection() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section id="story" className="section-anchor bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
@@ -25,9 +25,13 @@ export function StorySection() {
               From intimate gatherings to grand celebrations, we transform your 
               special moments into edible memories that your guests will cherish.
             </p>
-            <button className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all">
+            <a
+              href="#contact"
+              className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all inline-block text-center"
+              aria-label="Order treats and go to the contact form"
+            >
               Order Your Treats
-            </button>
+            </a>
           </div>
 
           {/* Right: Image */}

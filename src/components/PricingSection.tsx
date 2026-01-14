@@ -38,7 +38,7 @@ export function PricingSection() {
   ];
 
   return (
-    <section className="bg-[#f9f7f4] py-20 px-6">
+    <section id="pricing" className="section-anchor bg-[#f9f7f4] py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-center mb-12">
           Pricing
@@ -54,11 +54,13 @@ export function PricingSection() {
                 <h3 className="text-2xl font-['Playfair_Display'] mb-4">
                   {plan.name}
                 </h3>
-                <div className="mb-6">
-                  <div className="text-4xl font-['Playfair_Display'] text-[#7A5C3E] mb-2">
+                <div className="mb-6 space-y-2">
+                  <div className="text-4xl font-['Playfair_Display'] text-[#333333]">
+                    {plan.cookies}
+                  </div>
+                  <div className="text-4xl font-['Playfair_Display'] text-[#7A5C3E]">
                     {plan.price}
                   </div>
-                  <div className="text-lg text-[#333333] mb-1">{plan.cookies}</div>
                   <div className="text-sm text-[#666]">Lead time: {plan.leadTime}</div>
                 </div>
                 
@@ -71,9 +73,13 @@ export function PricingSection() {
                 </ul>
               </div>
               
-              <button className="w-full bg-[#7A5C3E] text-white px-6 py-3 rounded-full hover:bg-[#5d4630] transition-all mt-8">
+              <a
+                href="#contact"
+                className="w-full bg-[#7A5C3E] text-white px-6 py-3 rounded-full hover:bg-[#5d4630] transition-all mt-8 text-center inline-block"
+                aria-label={`Order the ${plan.name} package`}
+              >
                 Order Now
-              </button>
+              </a>
             </div>
           ))}
         </div>

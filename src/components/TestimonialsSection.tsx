@@ -31,7 +31,7 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="bg-[#9b7e5d] py-20 px-6">
+    <section id="testimonials" className="section-anchor bg-[#9b7e5d] py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="relative">
           {/* Testimonial Card */}

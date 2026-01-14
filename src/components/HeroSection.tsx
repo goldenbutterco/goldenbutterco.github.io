@@ -2,7 +2,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen w-full mt-16">
+    <section id="hero" className="section-anchor relative h-screen w-full mt-16">
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <ImageWithFallback
@@ -30,10 +30,20 @@ export function HeroSection() {
           
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all">
+            <button 
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all"
+            >
               Order Now
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#333333] transition-all">
+            <button 
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#333333] transition-all"
+            >
               Event Catering
             </button>
           </div>

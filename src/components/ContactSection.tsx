@@ -26,7 +26,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section id="contact" className="section-anchor bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12">
           {/* Left: Form */}
@@ -124,9 +124,8 @@ export function ContactSection() {
                 >
                   <option value="">Select a flavor</option>
                   <option value="chocolate-chip">Classic Chocolate Chip</option>
-                  <option value="double-chocolate">Double Chocolate</option>
-                  <option value="white-chocolate">White Chocolate Macadamia</option>
-                  <option value="oatmeal-raisin">Oatmeal Raisin</option>
+                  <option value="peanut-butter-double-chocolate">Peanut Butter Double Chocolate</option>
+                  <option value="both">Both</option>
                 </select>
               </div>
 

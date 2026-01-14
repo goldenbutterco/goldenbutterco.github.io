@@ -11,10 +11,22 @@ export function Footer() {
 
         {/* Right: Social Icons */}
         <div className="flex items-center gap-4">
-          <a href="#" className="text-white hover:opacity-80 transition-opacity">
+          <a
+            href="https://www.instagram.com/golden.butter.co"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visit Golden Butter on Instagram"
+            className="text-white hover:opacity-80 transition-opacity"
+          >
             <Instagram size={20} />
           </a>
-          <a href="#" className="text-white hover:opacity-80 transition-opacity">
+          <a
+            href="https://www.facebook.com/share/17cSNt4vDR/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visit Golden Butter on Facebook"
+            className="text-white hover:opacity-80 transition-opacity"
+          >
             <Facebook size={20} />
           </a>
         </div>

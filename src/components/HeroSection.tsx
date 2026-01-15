@@ -2,7 +2,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function HeroSection() {
   return (
-    <section id="hero" className="section-anchor relative h-screen w-full mt-16">
+    <section id="hero" className="section-anchor relative h-screen w-full">
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <ImageWithFallback
@@ -17,8 +17,8 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      {/* Content */}
-      <div className="relative h-full flex items-center justify-center px-6">
+      {/* Content - padding-top accounts for fixed header */}
+      <div className="relative h-full flex items-center justify-center px-6 pt-14 sm:pt-20">
         <div className="text-center text-white max-w-4xl">
           <h2 className="text-5xl md:text-7xl font-['Playfair_Display'] mb-6 text-white" style={{ color: 'white' }}>
             Hand Crafted Cookies.

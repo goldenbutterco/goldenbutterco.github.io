@@ -148,8 +148,8 @@ export function ContactSection() {
 
     try {
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        'service_s5ldz2v',
+        'template_igkdcqr',
         {
           name: formData.name,
           email: formData.email,
@@ -160,7 +160,7 @@ export function ContactSection() {
           address: formData.address || 'Not provided',
           message: formData.message || 'None',
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        'OBLI2n-6mqkUkrICw'
       );
       
       setSubmitStatus('success');

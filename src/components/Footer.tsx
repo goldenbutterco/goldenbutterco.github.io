@@ -2,8 +2,9 @@ import { Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-[#7A5C3E] px-6 py-8">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-[#7A5C3E] py-8">
+      <div className="px-6">
+        <div className="max-w-7xl mx-auto">
         {/* Mobile layout (Option 3) */}
         <div className="mobile-only items-start justify-between gap-4">
           <div className="text-white">
@@ -98,9 +99,12 @@ export function Footer() {
           </div>
         </div>
       </div>
+      </div>
 
-      <div className="max-w-7xl mx-auto mt-6 pt-6 border-t border-white/20 text-center text-white/70 text-sm">
-        © 2026 Golden Butter. Handcrafted in Tel Aviv.
+      <div className="px-6">
+        <div className="footer-copyright max-w-7xl mx-auto mt-6 pt-6 border-t border-white/20 text-center text-white/70 text-sm">
+          © 2026 Golden Butter. Handcrafted in Tel Aviv.
+        </div>
       </div>
     </footer>
   );

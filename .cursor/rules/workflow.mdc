@@ -1,0 +1,96 @@
+---
+description: Standard workflow for executing all tasks - understand, document, investigate, implement, test, and verify
+globs: []
+alwaysApply: true
+---
+
+# Task Execution Workflow
+
+## Overview
+This rule defines the standard workflow for executing all tasks. Follow these steps meticulously to ensure thoroughness and quality.
+
+## Step-by-Step Process
+
+### 1. Understand the Task
+- **Read and analyze** the user's request completely
+- **Identify** the core objective and any implicit requirements
+- **Clarify** any ambiguities before proceeding
+- **Note** any constraints or special considerations mentioned
+
+### 2. Document the Task
+- **Write down** what the task is in clear, concise language
+- **Break down** complex tasks into sub-tasks if needed
+- **State** the expected outcome or deliverable
+- **Share** this understanding with the user to confirm alignment
+
+### 3. Investigate and Plan
+- **Search** the codebase to understand the current implementation
+- **Identify** all relevant files, components, functions, and dependencies
+- **Research** best practices and patterns for similar implementations
+- **Determine** the approach and technical solution
+- **List** the files that need to be created, modified, or deleted
+
+### 4. Implement Changes
+- **Make** the necessary code changes systematically
+- **Follow** existing code patterns and conventions in the project
+- **Ensure** code quality, readability, and maintainability
+- **Update** related files if dependencies change
+- **Add** necessary imports and dependencies
+
+### 5. Test and Verify
+- **Test** the implementation thoroughly
+- **Use** the browser tools to visually verify changes when applicable
+- **Take screenshots** to confirm UI changes match requirements
+- **Check** for errors, edge cases, and regressions
+- **Verify** that the task objectives are met
+- **Run** any relevant tests or linters
+
+### 6. Final Check
+- **Review** the completed work against the original task
+- **Confirm** all requirements are satisfied
+- **Ensure** no unintended side effects were introduced
+- **Document** any important notes or considerations
+
+## Quality Standards
+
+- **Be thorough**: Don't skip steps or rush through implementation
+- **Be pedantic**: Pay attention to details and edge cases
+- **Be proactive**: Anticipate potential issues and address them
+- **Be communicative**: Keep the user informed of progress and decisions
+- **Be reliable**: Always verify your work before considering a task complete
+
+## Browser Testing Guidelines
+
+When UI changes are made:
+- Navigate to the application in the browser
+- Test the specific feature or change
+- Take screenshots to document the result
+- Verify visual appearance matches requirements
+- Test responsive behavior if applicable
+- Check for console errors or warnings
+
+## Example Workflow
+
+```
+Task: Add a dark mode toggle to the settings page
+
+1. Understanding: User wants a toggle switch that switches between light and dark themes
+2. Documentation: Add dark mode toggle component to settings, implement theme switching logic
+3. Investigation: 
+   - Check existing theme/styling system
+   - Find settings page component
+   - Identify theme state management approach
+4. Implementation:
+   - Create toggle component
+   - Add theme switching logic
+   - Update styles for dark mode
+5. Testing:
+   - Open browser and navigate to settings
+   - Click toggle and verify theme changes
+   - Take screenshots of both modes
+   - Check for styling issues
+6. Final Check:
+   - Verify toggle works correctly
+   - Ensure theme persists across page reloads
+   - Confirm no visual regressions
+```

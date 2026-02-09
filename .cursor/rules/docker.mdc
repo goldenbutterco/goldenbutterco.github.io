@@ -1,0 +1,170 @@
+---
+description: Docker-specific workflow and best practices for containerization tasks
+globs: ["**/Dockerfile*", "**/docker-compose*.yml", "**/docker-compose*.yaml", "**/.dockerignore"]
+alwaysApply: false
+---
+
+# Docker Workflow and Best Practices
+
+## Overview
+This rule applies when working with Docker files (Dockerfile, docker-compose.yml, .dockerignore). Follow Docker best practices and ensure proper containerization.
+
+## Docker Task Workflow
+
+### 1. Understand the Docker Task
+- **Identify** what needs to be containerized or modified
+- **Determine** if it's a new container, update to existing, or orchestration change
+- **Note** any specific requirements (ports, volumes, environment variables, dependencies)
+
+### 2. Document the Docker Task
+- **Write down** the Docker objective (build, run, compose, optimize)
+- **List** required services, dependencies, and configurations
+- **Specify** port mappings, volume mounts, and environment variables needed
+
+### 3. Investigate Docker Setup
+- **Review** existing Dockerfile and docker-compose.yml files
+- **Check** .dockerignore to understand what's excluded
+- **Identify** base images, dependencies, and build context
+- **Examine** multi-stage builds, caching strategies, and optimization opportunities
+- **Verify** port conflicts and volume mount points
+- **Check** environment variable usage and secrets management
+
+### 4. Implement Docker Changes
+- **Follow** Docker best practices:
+  - Use multi-stage builds for smaller images
+  - Leverage layer caching effectively
+  - Use specific version tags, avoid `latest`
+  - Minimize image layers and combine RUN commands when appropriate
+  - Use .dockerignore to exclude unnecessary files
+  - Set appropriate user permissions (avoid root when possible)
+- **Update** Dockerfile with proper instructions
+- **Configure** docker-compose.yml with correct services, networks, and volumes
+- **Ensure** proper health checks and restart policies
+- **Document** any required environment variables or secrets
+
+### 5. Test Docker Implementation
+- **Build** the Docker image and verify it builds successfully
+- **Run** containers and test functionality
+- **Verify** port mappings work correctly
+- **Check** volume mounts are accessible
+- **Test** environment variables are passed correctly
+- **Validate** docker-compose services start and communicate properly
+- **Check** logs for errors or warnings
+- **Verify** container health checks pass
+- **Test** container restart behavior
+
+### 6. Final Docker Check
+- **Review** image size and optimization opportunities
+- **Confirm** all services are properly configured
+- **Ensure** security best practices are followed
+- **Verify** documentation is updated if needed
+- **Check** that .dockerignore is comprehensive
+
+## Docker Best Practices
+
+### Dockerfile Guidelines
+- **Use official base images** when possible
+- **Order instructions** from least to most frequently changing
+- **Combine RUN commands** to reduce layers (but balance with cache efficiency)
+- **Use COPY instead of ADD** unless you need URL extraction
+- **Set WORKDIR** explicitly
+- **Use specific tags** instead of `latest`
+- **Clean up** package manager caches in the same layer
+- **Use .dockerignore** to exclude unnecessary files
+
+### Docker Compose Guidelines
+- **Define services** clearly with proper dependencies
+- **Use environment files** (.env) for configuration
+- **Set appropriate restart policies** (unless, always, on-failure)
+- **Configure health checks** for services
+- **Use named volumes** for persistent data
+- **Define networks** explicitly when needed
+- **Set resource limits** (memory, CPU) for production
+
+### Security Considerations
+- **Don't run as root** - create and use non-root users
+- **Scan images** for vulnerabilities
+- **Use secrets** for sensitive data (not environment variables in plain text)
+- **Keep base images updated** regularly
+- **Minimize attack surface** by removing unnecessary packages
+
+## Common Docker Commands
+
+### Building and Running
+```bash
+# Build image
+docker build -t <image-name> .
+
+# Run container
+docker run -p <host-port>:<container-port> <image-name>
+
+# Run with environment variables
+docker run -e VAR=value <image-name>
+
+# Run with volume mount
+docker run -v <host-path>:<container-path> <image-name>
+```
+
+### Docker Compose
+```bash
+# Start services
+docker-compose up -d
+
+# Build and start
+docker-compose up --build
+
+# View logs
+docker-compose logs -f <service-name>
+
+# Stop services
+docker-compose down
+
+# Stop and remove volumes
+docker-compose down -v
+```
+
+### Debugging
+```bash
+# Execute command in running container
+docker exec -it <container-name> <command>
+
+# View container logs
+docker logs <container-name>
+
+# Inspect container
+docker inspect <container-name>
+
+# Check container resource usage
+docker stats
+```
+
+## Example Docker Task Workflow
+
+```
+Task: Add a new service to docker-compose.yml
+
+1. Understanding: User wants to add a PostgreSQL database service to the compose file
+2. Documentation: Add postgres service with proper configuration, volumes, and environment variables
+3. Investigation:
+   - Check existing docker-compose.yml structure
+   - Identify port conflicts
+   - Review existing volume usage
+   - Check for existing database services
+4. Implementation:
+   - Add postgres service definition
+   - Configure volume for data persistence
+   - Set environment variables (POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD)
+   - Expose appropriate port
+   - Add health check
+5. Testing:
+   - Run docker-compose up -d
+   - Verify postgres container starts
+   - Check logs for errors
+   - Test database connection
+   - Verify volume persistence
+6. Final Check:
+   - Confirm service is properly configured
+   - Verify no port conflicts
+   - Ensure data persistence works
+   - Check security settings
+```

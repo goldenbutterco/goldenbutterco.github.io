@@ -10,8 +10,9 @@ import {
 export function GallerySection() {
   // List of available images - using JPG files (HEIC files need to be converted to JPG/PNG for browser compatibility)
   const galleryImages = [
+      '/assets/images/valentine2.png',
+      '/assets/images/IMG_5081 2.PNG',
     '/assets/images/E3A8B85B-D0E1-4601-BA7F-E6D773700EBC.JPG',
-    '/assets/images/IMG_5081 2.PNG',
     '/assets/images/IMG_6764.png',
     '/assets/images/IMG_7564.png',
     '/assets/images/IMG_7788.png',

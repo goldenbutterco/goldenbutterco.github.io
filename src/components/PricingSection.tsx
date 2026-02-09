@@ -18,7 +18,7 @@ export function PricingSection() {
           {/* Product image */}
           <div className="md:w-1/2 relative min-h-[300px] md:min-h-[420px]">
             <ImageWithFallback
-              src="/assets/images/valentine-main.png"
+              src="/assets/images/valentine-main.jpg"
               alt="Valentine's Day gift box with 4 chocolate chip cookies tied with a red ribbon"
               className="w-full h-full object-cover"
             />

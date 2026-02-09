@@ -7,14 +7,17 @@
   --color-charcoal: #333333;
 }
 
-/* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Montserrat', sans-serif;
   color: var(--color-charcoal);
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,9 +25,113 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-charcoal);
 }
 
-/* Custom Base Styles */
 * {
   box-sizing: border-box;
+}
+
+.section-anchor {
+  scroll-margin-top: 96px;
+}
+
+/* Responsive display utilities for header */
+.mobile-only {
+  display: flex;
+}
+.desktop-only {
+  display: none;
+}
+@media (min-width: 640px) {
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: flex;
+  }
+}
+
+/* Footer alignment tweak */
+.footer-copyright {
+  transform: none;
+}
+@media (min-width: 640px) {
+  .footer-copyright {
+    transform: translateX(35px);
+  }
+}
+
+/* Gallery styles */
+.gallery-slide {
+  flex: 0 0 72%;
+}
+
+.gallery-frame {
+  height: clamp(260px, 55vw, 560px);
+}
+
+@media (min-width: 640px) {
+  .gallery-slide {
+    flex-basis: 60%;
+  }
+  .gallery-frame {
+    height: clamp(320px, 60vw, 580px);
+  }
+}
+
+@media (min-width: 768px) {
+  .gallery-slide {
+    flex-basis: 52%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-slide {
+    flex-basis: 48%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .gallery-slide {
+    flex-basis: 44%;
+  }
+}
+
+.gallery-card {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  transition: transform 0.7s ease, opacity 0.7s ease, filter 0.7s ease;
+}
+
+.gallery-card--active {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+.gallery-card--muted {
+  transform: scale(0.9);
+  opacity: 0.6;
+  filter: blur(3px) saturate(0.75) brightness(0.95);
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.gallery-image--active {
+  transform: scale(1);
+  filter: none;
+}
+
+.gallery-image--muted {
+  transform: scale(1.04);
+  filter: blur(2px) saturate(0.75) brightness(0.95);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -34,6 +141,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

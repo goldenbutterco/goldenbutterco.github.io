@@ -21,11 +21,14 @@ export function HeroSection() {
       <div className="relative h-full flex items-center justify-center px-6 pt-14 sm:pt-20">
         <div className="text-center text-white max-w-4xl">
           <h2 className="text-5xl md:text-7xl font-['Playfair_Display'] mb-6 text-white" style={{ color: 'white' }}>
-            Hand Crafted Cookies.
+            Valentine's Day Gift Box
           </h2>
-          <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Experience the art of indulgence with our handcrafted premium cookies, 
-            masterfully created in the heart of Tel Aviv.
+          <p className="text-lg md:text-xl mb-4 max-w-2xl mx-auto leading-relaxed">
+            Surprise your valentine with our handcrafted chocolate chip cookies
+            in a beautiful gift box, delivered to your door in Tel Aviv.
+          </p>
+          <p className="text-sm md:text-base mb-10 max-w-xl mx-auto text-white/80">
+            Limited time offer &middot; Order by Wednesday night &middot; Delivery Friday Feb 13
           </p>
           
           {/* Buttons */}
@@ -36,15 +39,15 @@ export function HeroSection() {
               }}
               className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all"
             >
-              Order Now
+              Order Now - &#8362;80
             </button>
             <button 
               onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#333333] transition-all"
             >
-              Event Catering
+              View Gift Box
             </button>
           </div>
         </div>

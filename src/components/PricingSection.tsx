@@ -1,87 +1,82 @@
-export function PricingSection() {
-  const pricingPlans = [
-    {
-      name: "Get-Together",
-      price: "₪500",
-      cookies: "20 cookies",
-      leadTime: "3-5 days",
-      features: [
-        "Perfect for small gatherings",
-        "Custom design sticker",
-        "Premium packaging"
-      ]
-    },
-    {
-      name: "Small Event",
-      price: "₪1,000",
-      cookies: "50 cookies",
-      leadTime: "1-2 weeks",
-      features: [
-        "Ideal for parties & celebrations",
-        "Custom design sticker",
-        "Premium packaging",
-        "Delivery included"
-      ]
-    },
-    {
-      name: "Large Reception",
-      price: "₪1,800",
-      cookies: "100 cookies",
-      leadTime: "2-3 weeks",
-      features: [
-        "Perfect for weddings & events",
-        "Custom design sticker",
-        "Premium packaging",
-        "Delivery & setup included"
-      ]
-    }
-  ];
+import React from 'react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Gift, Truck, Clock, Heart } from 'lucide-react';
 
+export function PricingSection() {
   return (
     <section id="pricing" className="section-anchor bg-[#f9f7f4] py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-center mb-12">
-          Pricing
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-center mb-4">
+          Valentine's Day Gift Box
         </h2>
-        
-        <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
-          {pricingPlans.map((plan, index) => (
-            <div 
-              key={plan.name}
-              className="bg-white rounded-lg p-8 shadow-sm border border-[#e5e5e5] hover:shadow-lg transition-shadow flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-2xl font-['Playfair_Display'] mb-4">
-                  {plan.name}
-                </h3>
-                <div className="mb-6 space-y-2">
-                  <div className="text-4xl font-['Playfair_Display'] text-[#333333]">
-                    {plan.cookies}
-                  </div>
-                  <div className="text-4xl font-['Playfair_Display'] text-[#7A5C3E]">
-                    {plan.price}
-                  </div>
-                  <div className="text-sm text-[#666]">Lead time: {plan.leadTime}</div>
-                </div>
-                
-                <ul className="space-y-2">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="text-[#333333] text-sm">
-                      • {feature}
-                    </li>
-                  ))}
-                </ul>
+        <p className="text-center text-[#666] text-lg mb-12 max-w-2xl mx-auto">
+          The sweetest way to say &ldquo;I love you&rdquo; - limited time only
+        </p>
+
+        {/* Single product card */}
+        <div className="bg-white rounded-2xl shadow-lg border border-[#e5e5e5] overflow-hidden md:flex">
+          {/* Product image */}
+          <div className="md:w-1/2 relative min-h-[300px] md:min-h-[420px]">
+            <ImageWithFallback
+              src="/assets/images/valentine-main.jpg"
+              alt="Valentine's Day gift box with 4 chocolate chip cookies tied with a red ribbon"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Product details */}
+          <div className="md:w-1/2 p-8 md:p-10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Heart size={20} className="text-red-500" />
+                <span className="text-sm font-medium text-red-500 uppercase tracking-wider">Limited Edition</span>
               </div>
-              
+
+              <h3 className="text-3xl font-['Playfair_Display'] mb-2">
+                4 Chocolate Chip Cookies
+              </h3>
+              <p className="text-[#666] mb-6 leading-relaxed">
+                Our signature handcrafted chocolate chip cookies, beautifully packaged
+                in an elegant gift box with a red ribbon. The perfect last-minute Valentine's gift.
+              </p>
+
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3 text-[#333333]">
+                  <Gift size={18} className="text-[#7A5C3E] flex-shrink-0" />
+                  <span className="text-sm">Premium gift box packaging</span>
+                </div>
+                <div className="flex items-center gap-3 text-[#333333]">
+                  <Truck size={18} className="text-[#7A5C3E] flex-shrink-0" />
+                  <span className="text-sm">Free delivery to your door in Tel Aviv</span>
+                </div>
+                <div className="flex items-center gap-3 text-[#333333]">
+                  <Clock size={18} className="text-[#7A5C3E] flex-shrink-0" />
+                  <span className="text-sm">Delivered Friday Feb 13, 12:00&ndash;3:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-6">
+                <div className="text-4xl font-['Playfair_Display'] text-[#7A5C3E]">
+                  &#8362;80
+                </div>
+                <div className="text-sm text-[#666]">Delivery included</div>
+              </div>
+
               <a
                 href="#contact"
-                className="w-full bg-[#7A5C3E] text-white px-6 py-3 rounded-full hover:bg-[#5d4630] transition-all mt-8 text-center inline-block"
-                aria-label={`Order the ${plan.name} package`}
+                className="w-full bg-[#7A5C3E] text-white px-6 py-4 rounded-full hover:bg-[#5d4630] transition-all text-center inline-block text-lg"
+                aria-label="Order the Valentine's Day gift box"
               >
                 Order Now
               </a>
+
+              <p className="text-center text-sm text-[#999] mt-4">
+                Order by Wednesday night (Feb 12)
+              </p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

@@ -51,7 +51,7 @@ export function PricingSection() {
                 </div>
                 <div className="flex items-center gap-3 text-[#333333]">
                   <Clock size={18} className="text-[#7A5C3E] flex-shrink-0" />
-                  <span className="text-sm">Delivered Friday Feb 13, 13:00&ndash;16:00</span>
+                  <span className="text-sm">Delivered Friday Feb 13, 12:00&ndash;3:00 PM</span>
                 </div>
               </div>
             </div>

@@ -47,7 +47,7 @@ export function ProcessSection() {
             </h3>
             <p className="text-[#333333] leading-relaxed">
               Your gift box of handcrafted chocolate chip cookies will be delivered
-              to your door on Friday, February 13, between 13:00&ndash;16:00.
+              to your door on Friday, February 13, between 12:00&ndash;3:00 PM.
             </p>
           </div>
         </div>

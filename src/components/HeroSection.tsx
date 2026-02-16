@@ -6,7 +6,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <ImageWithFallback
-          src="/assets/images/IMG_6764.jpg"
+          src="/assets/images/IMG_6764.png"
           alt="Golden chocolate chip cookies"
           className="w-full h-full object-cover scale-[1.3] blur-[20px]"
         />

@@ -169,7 +169,7 @@ export function ContactSection() {
             </h2>
             <p className="text-[#333333] mb-8 leading-relaxed">
               Fill out the form and we'll confirm your order right away. 
-              Delivery is on Friday, February 13 (day before Valentine's Day) between 13:00&ndash;16:00 
+              Delivery is on Friday, February 13 (day before Valentine's Day) between 12:00&ndash;3:00 PM 
               in the Tel Aviv area.
             </p>
 

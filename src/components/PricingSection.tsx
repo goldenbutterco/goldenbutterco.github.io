@@ -2,8 +2,8 @@ export function PricingSection() {
   const pricingPlans = [
     {
       name: "Get-Together",
-      price: "₪500",
-      cookies: "20 cookies",
+      price: "₪200",
+      cookies: "10 cookies",
       leadTime: "3-5 days",
       features: [
         "Perfect for small gatherings",
@@ -13,8 +13,8 @@ export function PricingSection() {
     },
     {
       name: "Small Event",
-      price: "₪1,000",
-      cookies: "50 cookies",
+      price: "₪380",
+      cookies: "20 cookies",
       leadTime: "1-2 weeks",
       features: [
         "Ideal for parties & celebrations",
@@ -25,8 +25,8 @@ export function PricingSection() {
     },
     {
       name: "Large Reception",
-      price: "₪1,800",
-      cookies: "100 cookies",
+      price: "₪850",
+      cookies: "50 cookies",
       leadTime: "2-3 weeks",
       features: [
         "Perfect for weddings & events",

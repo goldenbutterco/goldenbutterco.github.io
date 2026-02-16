@@ -238,9 +238,9 @@ export function ContactSection() {
                 Lead Times
               </h3>
               <ul className="space-y-3 text-[#333333]">
-                <li>• <strong>Get-Together (20 cookies):</strong> 3-5 days</li>
-                <li>• <strong>Small Event (50 cookies):</strong> 1-2 weeks</li>
-                <li>• <strong>Large Reception (100 cookies):</strong> 2-3 weeks</li>
+                <li>• <strong>Get-Together (10 cookies):</strong> 3-5 days</li>
+                <li>• <strong>Small Event (20 cookies):</strong> 1-2 weeks</li>
+                <li>• <strong>Large Reception (50 cookies):</strong> 2-3 weeks</li>
               </ul>
             </div>
 
@@ -322,9 +322,9 @@ export function ContactSection() {
                   className={getInputClassName('cookiePackage')}
                 >
                   <option value="">Select a package</option>
-                  <option value="get-together">Get-Together (20 cookies)</option>
-                  <option value="small-event">Small Event (50 cookies)</option>
-                  <option value="large-reception">Large Reception (100 cookies)</option>
+                  <option value="get-together">Get-Together (10 cookies)</option>
+                  <option value="small-event">Small Event (20 cookies)</option>
+                  <option value="large-reception">Large Reception (50 cookies)</option>
                 </select>
                 {touched.cookiePackage && errors.cookiePackage && (
                   <p className="text-red-600 text-sm mt-1">{errors.cookiePackage}</p>

@@ -44,9 +44,9 @@ export function Header() {
         <a
           href="#contact"
           className="desktop-only border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-[#7A5C3E] transition-all items-center justify-center"
-          aria-label="Jump to the order section"
+          aria-label="Jump to the contact section"
         >
-          Order Now
+          Contact us
         </a>
       </div>
     </header>

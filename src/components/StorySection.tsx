@@ -22,15 +22,15 @@ export function StorySection() {
               soft, gooey centers.
             </p>
             <p className="text-[#333333] leading-relaxed mb-8">
-              This Valentine's Day, share the love with a beautiful gift box of our 
-              handcrafted chocolate chip cookies - delivered right to your door.
+              From intimate gatherings to grand celebrations, we transform your 
+              special moments into edible memories that your guests will cherish.
             </p>
             <a
               href="#contact"
               className="bg-[#7A5C3E] text-white px-8 py-3 rounded-full hover:bg-[#5d4630] transition-all inline-block text-center"
-              aria-label="Order your Valentine's gift box"
+              aria-label="Order treats and go to the contact form"
             >
-              Order Your Valentine's Gift
+              Order Your Treats
             </a>
           </div>
 

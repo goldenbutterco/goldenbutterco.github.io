@@ -1,53 +1,50 @@
-import { ShoppingBag, CreditCard, Heart } from 'lucide-react';
+import { Cookie, Palette, Heart } from 'lucide-react';
 
 export function ProcessSection() {
   return (
     <section id="process" className="section-anchor bg-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-center mb-12">
-          How to Order
-        </h2>
         <div className="grid md:grid-cols-3 gap-12">
           {/* Step 1 */}
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <ShoppingBag size={64} className="text-[#7A5C3E]" strokeWidth={1.5} />
+              <Cookie size={64} className="text-[#7A5C3E]" strokeWidth={1.5} />
             </div>
             <h3 className="text-2xl font-['Playfair_Display'] mb-4">
-              1. Place Your Order
+              Step 1: The Base.
             </h3>
             <p className="text-[#333333] leading-relaxed">
-              Fill out the order form below by Wednesday night (Feb 12).
-              Choose how many gift boxes you'd like and provide your delivery address
-              in the Tel Aviv area.
+              We start with our signature Golden Butter cookies, baked to golden 
+              perfection with premium ingredients that create an unforgettable taste 
+              and texture.
             </p>
           </div>
 
           {/* Step 2 */}
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <CreditCard size={64} className="text-[#7A5C3E]" strokeWidth={1.5} />
+              <Palette size={64} className="text-[#7A5C3E]" strokeWidth={1.5} />
             </div>
             <h3 className="text-2xl font-['Playfair_Display'] mb-4">
-              2. Confirm &amp; Pay
+              Step 2: The Personal Touch.
             </h3>
             <p className="text-[#333333] leading-relaxed">
-              We'll confirm your order and send you a Bit payment request.
-              Once you complete the payment, your order is locked in!
+              We translate your event into design. From weddings to corporate events, 
+              we create a customized sticker that captures the soul of the occasion.
             </p>
           </div>
 
           {/* Step 3 */}
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <Heart size={64} className="text-red-500" strokeWidth={1.5} />
+              <Heart size={64} className="text-[#7A5C3E]" strokeWidth={1.5} />
             </div>
             <h3 className="text-2xl font-['Playfair_Display'] mb-4">
-              3. Enjoy Valentine's Day!
+              Step 3: The Connection.
             </h3>
             <p className="text-[#333333] leading-relaxed">
-              Your gift box of handcrafted chocolate chip cookies will be delivered
-              to your door on Friday, February 13, between 12:00&ndash;3:00 PM.
+              We take a piece of your story and hand it to every guest. Each cookie 
+              becomes a personal 'thank you' they can taste and remember.
             </p>
           </div>
         </div>

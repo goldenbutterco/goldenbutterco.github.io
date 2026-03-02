@@ -37,7 +37,7 @@ export function StorySection() {
           {/* Right: Image */}
           <div className="relative h-96 md:h-full min-h-[400px]">
             <ImageWithFallback
-              src="/assets/images/IMG_7791.png"
+              src="/assets/images/broken-molten-chocolate-cookie.png"
               alt="Broken cookie with melted chocolate"
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />

@@ -10,13 +10,17 @@ import {
 export function GallerySection() {
   // List of available images - using JPG files (HEIC files need to be converted to JPG/PNG for browser compatibility)
   const galleryImages = [
-    '/assets/images/E3A8B85B-D0E1-4601-BA7F-E6D773700EBC.JPG',
-    '/assets/images/IMG_5081 2.PNG',
-    '/assets/images/IMG_6764.png',
-    '/assets/images/IMG_7564.png',
-    '/assets/images/IMG_7788.png',
-    '/assets/images/IMG_7791.png',
-    '/assets/images/IMG_8053.png',
+    // New images - shown first in the carousel
+    '/assets/images/new_images/event-cookie-table-02.jpeg',
+    '/assets/images/new_images/cookie-gift-box-02.jpeg',
+    '/assets/images/new_images/cookie-gift-box-01.jpeg',
+    '/assets/images/new_images/event-cookie-table-01.jpeg',
+    // Existing images (renamed with descriptive titles)
+    '/assets/images/goldenbutter-cookie-assortment-plate.jpg',
+    '/assets/images/hero-golden-chocolate-chip-cookies.png',
+    '/assets/images/goldenbutter-cookie-box-display-1.png',
+    '/assets/images/broken-molten-chocolate-cookie.png',
+    '/assets/images/goldenbutter-cookie-stack.png',
   ];
 
   const [api, setApi] = useState<CarouselApi | null>(null);
@@ -61,8 +65,7 @@ export function GallerySection() {
         <Carousel
           opts={{
             align: 'center',
-            loop: false,
-            containScroll: 'trimSnaps',
+            loop: true,
             slidesToScroll: 1,
             inViewThreshold: 0.6,
             skipSnaps: false,

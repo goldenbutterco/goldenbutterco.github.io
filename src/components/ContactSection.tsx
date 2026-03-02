@@ -1,8 +1,24 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
-// Date helper functions
-const getMinLeadDays = (packageType: string): number => {
+// Pricing + date helper functions
+const getCustomPerCookie = (count: number): number => {
+  if (count <= 10) return 20;
+  if (count <= 20) return 19;
+  return 17;
+};
+
+const getCustomTotal = (count: number): number => {
+  return count * getCustomPerCookie(count);
+};
+
+const getMinLeadDays = (packageType: string, customCount?: number): number => {
+  if (packageType === 'custom' && customCount && customCount >= 6 && customCount <= 50) {
+    if (customCount <= 10) return 3;
+    if (customCount <= 20) return 7;
+    return 14;
+  }
+
   switch (packageType) {
     case 'large-reception': return 14;
     case 'small-event': return 7;
@@ -11,8 +27,8 @@ const getMinLeadDays = (packageType: string): number => {
   }
 };
 
-const getMinDate = (packageType: string): string => {
-  const days = getMinLeadDays(packageType);
+const getMinDate = (packageType: string, customCount?: number): string => {
+  const days = getMinLeadDays(packageType, customCount);
   const date = new Date();
   date.setDate(date.getDate() + days);
   return date.toISOString().split('T')[0];
@@ -29,6 +45,7 @@ const getPackageLabel = (packageType: string): string => {
     case 'large-reception': return 'Large Reception';
     case 'small-event': return 'Small Event';
     case 'get-together': return 'Get-Together';
+    case 'custom': return 'Custom';
     default: return 'your selected package';
   }
 };
@@ -40,6 +57,7 @@ export function ContactSection() {
     phone: '',
     neededBy: '',
     cookiePackage: '',
+    customQuantity: '',
     flavor: '',
     address: '',
     message: ''
@@ -85,7 +103,10 @@ export function ContactSection() {
         
         // Check min date based on package
         const packageType = currentFormData.cookiePackage;
-        const minDays = getMinLeadDays(packageType);
+        const customCount = packageType === 'custom'
+          ? Number.parseInt(currentFormData.customQuantity || '', 10)
+          : undefined;
+        const minDays = getMinLeadDays(packageType, Number.isNaN(customCount || NaN) ? undefined : customCount);
         const minDate = new Date();
         minDate.setDate(minDate.getDate() + minDays);
         minDate.setHours(0, 0, 0, 0);
@@ -101,6 +122,30 @@ export function ContactSection() {
       case 'cookiePackage':
         if (!value) return 'Please select a package';
         return '';
+
+      case 'customQuantity': {
+        const packageType = currentFormData.cookiePackage;
+        const trimmed = value.trim();
+
+        if (packageType !== 'custom') {
+          return '';
+        }
+
+        if (!trimmed) {
+          return 'Please enter the number of cookies';
+        }
+
+        const qty = Number(trimmed);
+        if (!Number.isInteger(qty)) {
+          return 'Please enter a whole number of cookies';
+        }
+
+        if (qty < 6 || qty > 50) {
+          return 'Please enter between 6 and 50 cookies';
+        }
+
+        return '';
+      }
       
       case 'flavor':
         if (!value) return 'Please select a flavor';
@@ -114,7 +159,11 @@ export function ContactSection() {
   // Validate all fields
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['name', 'email', 'phone', 'neededBy', 'cookiePackage', 'flavor'];
+    const fieldsToValidate = ['name', 'email', 'phone', 'neededBy', 'cookiePackage', 'flavor'] as string[];
+
+    if (formData.cookiePackage === 'custom') {
+      fieldsToValidate.push('customQuantity');
+    }
     
     fieldsToValidate.forEach(field => {
       const error = validateField(field, formData[field as keyof typeof formData]);
@@ -147,6 +196,23 @@ export function ContactSection() {
     setSubmitStatus('idle');
 
     try {
+      const isCustom = formData.cookiePackage === 'custom';
+      const customQty = isCustom
+        ? Number.parseInt(formData.customQuantity || '', 10)
+        : undefined;
+      const validCustomQty = isCustom && customQty && Number.isInteger(customQty) && customQty >= 6 && customQty <= 50
+        ? customQty
+        : undefined;
+
+      const perCookiePrice = validCustomQty ? getCustomPerCookie(validCustomQty) : undefined;
+      const estimatedTotal = validCustomQty ? getCustomTotal(validCustomQty) : undefined;
+
+      const baseMessage = formData.message || 'None';
+      const customSummary =
+        isCustom && validCustomQty && perCookiePrice && estimatedTotal
+          ? `Custom package: ${validCustomQty} cookies • ₪${perCookiePrice} each • Estimated total ₪${estimatedTotal}`
+          : '';
+
       await emailjs.send(
         'service_s5ldz2v',
         'template_igkdcqr',
@@ -158,7 +224,10 @@ export function ContactSection() {
           cookiePackage: formData.cookiePackage,
           flavor: formData.flavor,
           address: formData.address || 'Not provided',
-          message: formData.message || 'None',
+          message: customSummary ? `${baseMessage}\n\n${customSummary}` : baseMessage,
+          customQuantity: validCustomQty ?? '',
+          perCookiePrice: perCookiePrice ?? '',
+          estimatedTotal: estimatedTotal ?? '',
         },
         'OBLI2n-6mqkUkrICw'
       );
@@ -171,6 +240,7 @@ export function ContactSection() {
         phone: '',
         neededBy: '',
         cookiePackage: '',
+        customQuantity: '',
         flavor: '',
         address: '',
         message: ''
@@ -187,7 +257,20 @@ export function ContactSection() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const newFormData = { ...formData, [name]: value };
+    let newFormData = { ...formData, [name]: value };
+
+    // If switching away from custom, clear custom quantity and related errors
+    if (name === 'cookiePackage' && value !== 'custom' && formData.customQuantity) {
+      newFormData = { ...newFormData, customQuantity: '' };
+      setErrors(prev => {
+        const { customQuantity, ...rest } = prev;
+        return rest;
+      });
+      setTouched(prev => {
+        const { customQuantity, ...rest } = prev;
+        return rest;
+      });
+    }
     setFormData(newFormData);
     
     // Validate on change if field has been touched
@@ -196,8 +279,12 @@ export function ContactSection() {
       setErrors(prev => ({ ...prev, [name]: error }));
     }
     
-    // Re-validate date when package changes
-    if (name === 'cookiePackage' && touched['neededBy'] && formData.neededBy) {
+    // Re-validate date when package or custom quantity changes
+    if (
+      (name === 'cookiePackage' || name === 'customQuantity') &&
+      touched['neededBy'] &&
+      formData.neededBy
+    ) {
       const dateError = validateField('neededBy', formData.neededBy, newFormData);
       setErrors(prev => ({ ...prev, neededBy: dateError }));
     }
@@ -325,9 +412,45 @@ export function ContactSection() {
                   <option value="get-together">Get-Together (10 cookies)</option>
                   <option value="small-event">Small Event (20 cookies)</option>
                   <option value="large-reception">Large Reception (50 cookies)</option>
+                  <option value="custom">Custom (6–50 cookies)</option>
                 </select>
                 {touched.cookiePackage && errors.cookiePackage && (
                   <p className="text-red-600 text-sm mt-1">{errors.cookiePackage}</p>
+                )}
+                {formData.cookiePackage === 'custom' && (
+                  <div className="mt-4">
+                    <label htmlFor="customQuantity" className="block text-[#333333] mb-2">
+                      Custom number of cookies *
+                    </label>
+                    <input
+                      type="number"
+                      id="customQuantity"
+                      name="customQuantity"
+                      min={6}
+                      max={50}
+                      step={1}
+                      value={formData.customQuantity}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClassName('customQuantity')}
+                    />
+                    <p className="text-gray-500 text-sm mt-1">
+                      Choose any whole number between 6 and 50 cookies.
+                    </p>
+                    {touched.customQuantity && errors.customQuantity && (
+                      <p className="text-red-600 text-sm mt-1">{errors.customQuantity}</p>
+                    )}
+                    {!errors.customQuantity && formData.customQuantity && Number.isInteger(Number(formData.customQuantity)) && Number(formData.customQuantity) >= 6 && Number(formData.customQuantity) <= 50 && (
+                      <p className="text-gray-700 text-sm mt-2">
+                        {(() => {
+                          const qty = Number(formData.customQuantity);
+                          const perCookie = getCustomPerCookie(qty);
+                          const total = getCustomTotal(qty);
+                          return `Estimated: ₪${total.toLocaleString('he-IL')} (${qty} × ₪${perCookie})`;
+                        })()}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
 
@@ -342,7 +465,12 @@ export function ContactSection() {
                   value={formData.neededBy}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  min={getMinDate(formData.cookiePackage)}
+                  min={getMinDate(
+                    formData.cookiePackage,
+                    formData.cookiePackage === 'custom'
+                      ? Number.parseInt(formData.customQuantity || '', 10)
+                      : undefined
+                  )}
                   max={getMaxDate()}
                   className={getInputClassName('neededBy')}
                 />
@@ -351,7 +479,14 @@ export function ContactSection() {
                 )}
                 {formData.cookiePackage && !errors.neededBy && (
                   <p className="text-gray-500 text-sm mt-1">
-                    {getPackageLabel(formData.cookiePackage)} requires at least {getMinLeadDays(formData.cookiePackage)} days notice
+                    {getPackageLabel(formData.cookiePackage)} requires at least{' '}
+                    {getMinLeadDays(
+                      formData.cookiePackage,
+                      formData.cookiePackage === 'custom'
+                        ? Number.parseInt(formData.customQuantity || '', 10)
+                        : undefined
+                    )}{' '}
+                    days notice
                   </p>
                 )}
               </div>
